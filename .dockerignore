@@ -1,0 +1,39 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Documentation
+.smithery/
+SMITHERY_DEPLOYMENT.md
+DEPLOYMENT_SUMMARY.md
+
+# Tests
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Misc
+.DS_Store
+*.log

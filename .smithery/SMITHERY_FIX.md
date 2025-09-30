@@ -10,12 +10,19 @@ Error code: insufficientBuildFiles
 
 ## ✅ Řešení
 
-Byl vytvořen **smithery.yaml** konfigurační soubor, který Smithery vyžaduje pro správnou konfiguraci buildu a spuštění serveru.
+Smithery vyžaduje **DVA** konfigurační soubory:
+
+1. **`Dockerfile`** - Definuje, jak sestavit MCP server
+2. **`smithery.yaml`** - Určuje, jak spustit server
+
+Oba soubory byly vytvořeny a jsou připraveny k použití.
 
 ## 📁 Co bylo přidáno/upraveno
 
 ### Nové soubory:
-- **smithery.yaml** - Hlavní konfigurační soubor pro Smithery (VYŽADOVÁNO)
+- **`Dockerfile`** - Docker image pro build serveru (VYŽADOVÁNO Smithery)
+- **`smithery.yaml`** - Konfigurace spuštění serveru (VYŽADOVÁNO Smithery)
+- **`.dockerignore`** - Optimalizace Docker buildu
 
 ### Aktualizované soubory:
 - **SMITHERY_DEPLOYMENT.md** - Přidána sekce o smithery.yaml

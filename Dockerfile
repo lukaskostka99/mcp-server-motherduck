@@ -22,13 +22,16 @@ RUN uv pip install --system --no-cache .
 # Environment variables (nastavené přes Smithery config)
 ENV PYTHONUNBUFFERED=1
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD python -c "import sys; sys.exit(0)"
+# Expose port pro HTTP stream transport
+EXPOSE 8000
 
-# Entry point - spuštění MCP serveru
+# Health check - kontrola HTTP endpointu
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/mcp').read()" || exit 1
+
+# Entry point - spuštění MCP serveru v stream režimu
 # Parametry budou předány přes Smithery konfiguraci
-ENTRYPOINT ["mcp-server-motherduck"]
+ENTRYPOINT ["mcp-server-motherduck", "--transport", "stream", "--port", "8000"]
 
 # Default argumenty (mohou být přepsány)
 CMD ["--db-path", "md:"]

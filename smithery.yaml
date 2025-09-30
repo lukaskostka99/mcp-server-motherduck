@@ -1,9 +1,10 @@
 # Smithery konfigurace pro mcp-server-motherduck
 # Dokumentace: https://smithery.ai/docs/config
 
-# Jak spustit server
+# Jak spustit server (streamable HTTP pro remote deployment)
 startCommand:
-  type: stdio
+  type: http
+  port: 8000
   
   # Konfigurace parametrů
   configSchema:
@@ -29,10 +30,13 @@ startCommand:
         description: "Connect to MotherDuck in SaaS mode (enhanced security)"
         default: false
   
-  # Jak sestavit příkaz pro spuštění
+  # Jak sestavit příkaz pro spuštění (HTTP stream transport)
   commandFunction: |
     (config) => {
-      const args = [];
+      const args = [
+        '--transport', 'stream',
+        '--port', '8000'
+      ];
       
       // Přidat db-path parametr
       if (config.db_path) {

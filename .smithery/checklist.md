@@ -10,6 +10,15 @@ Použijte tento checklist před nasazením na Smithery.
 - [x] Dependencies jsou aktuální a správně specifikované
 - [x] `project.scripts` obsahuje správný entry point
 
+### smithery.yaml (VYŽADOVÁNO)
+- [x] Soubor existuje v root adresáři
+- [x] `mcp.name` odpovídá názvu serveru
+- [x] `startCommand` je správně nakonfigurován
+- [x] `configSchema` definuje všechny parametry
+- [x] `build.type` je nastaven na `pypi`
+- [x] `build.package` odpovídá PyPI package name
+- [x] `examples` poskytují užitečné příklady konfigurace
+
 ### server.json
 - [x] Soubor existuje v root adresáři
 - [x] Schema je validní: `https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json`

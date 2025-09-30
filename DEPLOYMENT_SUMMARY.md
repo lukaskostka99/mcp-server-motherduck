@@ -19,6 +19,7 @@ Váš MCP server `mcp-server-motherduck` je nyní **plně připraven** pro nasaz
   - Git commit, tag a push
 
 ### 3. Validace
+- ✅ `smithery.yaml` je vytvořen (vyžadováno Smithery)
 - ✅ `server.json` je validní a kompletní
 - ✅ `pyproject.toml` má správné metadata
 - ✅ Verze jsou synchronizované (0.6.4)

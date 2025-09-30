@@ -11,9 +11,38 @@ Váš MCP server je připraven k nasazení na Smithery, pokud splňuje následuj
 - ✅ **GitHub repository** je veřejný (`https://github.com/motherduckdb/mcp-server-motherduck`)
 - ✅ **README.md** obsahuje dokumentaci
 
-## Krok 1: Ověření server.json
+## Krok 1: Ověření konfiguračních souborů
 
-Soubor `server.json` je klíčový pro Smithery. Ujistěte se, že obsahuje:
+### smithery.yaml
+
+Soubor `smithery.yaml` je **vyžadován** Smithery pro správnou konfiguraci buildu a spuštění serveru:
+
+```yaml
+mcp:
+  name: mcp-server-motherduck
+  description: Fast analytics and data processing with DuckDB and MotherDuck
+  transport: stdio
+  startCommand:
+    type: stdio
+    configSchema:
+      type: object
+      properties:
+        db_path:
+          type: string
+          description: "Path to local DuckDB database file or MotherDuck database"
+          default: "md:"
+        motherduck_token:
+          type: string
+          description: "Access token for MotherDuck database connections"
+          secret: true
+    ...
+```
+
+✅ Tento soubor je již vytvořen!
+
+### server.json
+
+Soubor `server.json` poskytuje metadata pro MCP ekosystém. Ujistěte se, že obsahuje:
 
 ```json
 {

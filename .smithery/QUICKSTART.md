@@ -4,18 +4,22 @@ Rychlý průvodce pro nasazení na Smithery za 5 minut.
 
 ## 🚀 Rychlé nasazení
 
-### Krok 1: Ověření verze (30 sekund)
+### Krok 1: Ověření konfigurace (30 sekund)
 
-Ujistěte se, že všechny verze jsou synchronizované:
+Ujistěte se, že všechny konfigurační soubory existují:
 
 ```bash
-# Zkontrolovat současnou verzi
+# Zkontrolovat, že smithery.yaml existuje (VYŽADOVÁNO)
+ls -la smithery.yaml
+
+# Zkontrolovat verze
 grep version pyproject.toml
 grep SERVER_VERSION src/mcp_server_motherduck/configs.py
 grep '"version"' server.json
 ```
 
-Všechny by měly ukazovat **0.6.4**.
+✅ **smithery.yaml** - již vytvořen  
+✅ Všechny verze by měly ukazovat **0.6.4**
 
 ### Krok 2: Publikace na PyPI (2 minuty)
 

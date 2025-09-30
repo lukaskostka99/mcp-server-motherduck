@@ -1,0 +1,147 @@
+mcp:
+  # MCP Server konfigurace pro Smithery
+  # Dokumentace: https://smithery.ai/docs/build/project-config
+  
+  # Základní informace o serveru
+  name: mcp-server-motherduck
+  description: Fast analytics and data processing with DuckDB and MotherDuck
+  
+  # Transport typ - tento server podporuje stdio (default), sse, a stream
+  transport: stdio
+  
+  # Spouštěcí příkaz
+  # Server je PyPI balíček, takže používáme uvx pro spuštění
+  startCommand:
+    type: stdio
+    
+    # Konfigurační schema pro parametry serveru
+    configSchema:
+      type: object
+      properties:
+        db_path:
+          type: string
+          description: "Path to local DuckDB database file or MotherDuck database"
+          default: "md:"
+        motherduck_token:
+          type: string
+          description: "Access token for MotherDuck database connections"
+          secret: true
+        home_dir:
+          type: string
+          description: "Home directory for DuckDB"
+        read_only:
+          type: boolean
+          description: "Connect to database in read-only mode"
+          default: false
+        saas_mode:
+          type: boolean
+          description: "Connect to MotherDuck in SaaS mode (enhanced security)"
+          default: false
+    
+    # Funkce pro sestavení příkazu
+    commandFunction: |
+      (config) => {
+        const args = ['mcp-server-motherduck'];
+        
+        // Přidat db-path parametr
+        if (config.db_path) {
+          args.push('--db-path', config.db_path);
+        }
+        
+        // Přidat motherduck-token pokud je nastaven
+        if (config.motherduck_token) {
+          args.push('--motherduck-token', config.motherduck_token);
+        }
+        
+        // Přidat home-dir pokud je nastaven
+        if (config.home_dir) {
+          args.push('--home-dir', config.home_dir);
+        }
+        
+        // Přidat read-only flag
+        if (config.read_only === true) {
+          args.push('--read-only');
+        }
+        
+        // Přidat saas-mode flag
+        if (config.saas_mode === true) {
+          args.push('--saas-mode');
+        }
+        
+        return {
+          command: 'uvx',
+          args: args
+        };
+      }
+
+# Build konfigurace
+build:
+  # Tento server je PyPI balíček, nepotřebuje build
+  type: pypi
+  package: mcp-server-motherduck
+  version: 0.6.4
+
+# Runtime požadavky
+runtime:
+  # Server vyžaduje Python 3.10+
+  python: ">=3.10"
+  
+  # Dodatečné závislosti jsou instalovány automaticky z PyPI
+  dependencies:
+    - uvx
+
+# Příklady konfigurace pro uživatele
+examples:
+  - name: "MotherDuck Connection"
+    description: "Connect to MotherDuck cloud database"
+    config:
+      db_path: "md:"
+      motherduck_token: "${MOTHERDUCK_TOKEN}"
+  
+  - name: "Local DuckDB File"
+    description: "Connect to local DuckDB database file"
+    config:
+      db_path: "/path/to/local.db"
+  
+  - name: "In-Memory Database"
+    description: "Use in-memory DuckDB database"
+    config:
+      db_path: ":memory:"
+  
+  - name: "MotherDuck SaaS Mode (Secure)"
+    description: "Connect to MotherDuck with enhanced security"
+    config:
+      db_path: "md:"
+      motherduck_token: "${MOTHERDUCK_TOKEN}"
+      saas_mode: true
+      read_only: true
+
+# Metadata pro Smithery
+metadata:
+  category: database
+  tags:
+    - duckdb
+    - motherduck
+    - analytics
+    - sql
+    - database
+    - data-processing
+  
+  # Odkazy
+  links:
+    homepage: https://motherduck.com
+    repository: https://github.com/motherduckdb/mcp-server-motherduck
+    documentation: https://github.com/motherduckdb/mcp-server-motherduck/blob/main/README.md
+    issues: https://github.com/motherduckdb/mcp-server-motherduck/issues
+  
+  # Logo (pokud máte)
+  # logo: https://example.com/logo.png
+  
+  # Screenshot (pokud máte)
+  # screenshots:
+  #   - https://example.com/screenshot1.png
+
+# Health check (volitelné)
+# healthCheck:
+#   command: uvx mcp-server-motherduck --help
+#   interval: 60

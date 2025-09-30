@@ -5,7 +5,7 @@ An MCP server implementation that interacts with DuckDB and MotherDuck databases
 [![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](cursor://anysphere.cursor-deeplink/mcp/install?name=DuckDB&config=eyJjb21tYW5kIjoidXZ4IG1jcC1zZXJ2ZXItbW90aGVyZHVjayAtLWRiLXBhdGggOm1lbW9yeToiLCJlbnYiOnsibW90aGVyZHVja190b2tlbiI6IiJ9fQ%3D%3D)
 [![Smithery](https://smithery.ai/badge/mcp-server-motherduck)](https://smithery.ai/server/mcp-server-motherduck)
 
-> **Quick Install via Smithery**: `npx @smithery/cli install mcp-server-motherduck` | [Learn more](SMITHERY_DEPLOYMENT.md)
+> **Quick Install via Smithery**: `npx -y @smithery/cli install mcp-server-motherduck` | [Learn more](SMITHERY_DEPLOYMENT.md)
 
 ## Resources
 - [Close the Loop: Faster Data Pipelines with MCP, DuckDB & AI (Blogpost)](https://motherduck.com/blog/faster-data-pipelines-with-mcp-duckdb-ai/)
